@@ -1,0 +1,48 @@
+body,html {
+    height: 100%;
+    background: #c7c7c7
+}
+
+.comp-name {
+    justify-self: end;
+}
+
+.score-bar {
+    transform: skew(20deg);
+    height: 20px;
+    background: rgb(4, 5, 78);
+    padding: 5px;
+}
+.score-bar-comp {
+    transform: skew(-20deg);
+    height: 20px;
+    background: rgb(4, 5, 78);
+    padding: 5px;
+}
+
+.pill {
+    background-color: rgba(245, 245, 245, 0.4);
+    height: 10px;
+    border-radius: 50px;
+    transform: skew(-20deg);
+}
+.pill-2 {
+    background-color: rgba(245, 245, 245, 0.4);
+    height: 10px;
+    border-radius: 50px;
+    transform: skew(20deg);
+}
+
+.indicator {
+    opacity: 0;
+}
+
+.rock:hover > .indicator {
+    opacity: 1;
+}
+.paper:hover > .indicator {
+    opacity: 1;
+}
+.scissors:hover > .indicator {
+    opacity: 1;
+}
