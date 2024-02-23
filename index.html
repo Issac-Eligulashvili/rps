@@ -14,54 +14,78 @@
 </head>
 
 <body>
-    <header>
-        <!-- Score Goes here -->
-        <div class="container-fluid">
-            <div class="row justify-content-between m-3">
-                <div class="col-5 player">
-                    <div class="score-bar w-100">
-                        <div class="row d-flex align-items-center m-0 gx-2 justify-content-evenly">
-                            <div class="col-3 pill"></div>
-                            <div class="col-3 pill"></div>
-                            <div class="col-3 pill"></div>
-                        </div>
-                    </div>
-                    <div class="player-name">(username)</div>
+    <div class="container-fluid">
+        <div class="arcade d-flex justify-content-center align-items-center">
+            <div class="row justify-content-center">
+                <div class="top-logo">
+                    <img class="img-fluid logo" src="New Project (1).jpg">
                 </div>
-                <div class="col-5 computer d-grid">
-                    <div class="score-bar-comp w-100">
-                        <div class="row d-flex align-items-center m-0 gx-2 justify-content-evenly">
-                            <div class="col-3 pill-2"></div>
-                            <div class="col-3 pill-2"></div>
-                            <div class="col-3 pill-2"></div>
+                <div class="screen mt-5">
+                    <header>
+                        <!-- Score Goes here -->
+                        <div class="container-fluid">
+                            <div class="row justify-content-between m-3">
+                                <div class="col-5 player">
+                                    <div class="score-bar w-100">
+                                        <div class="row d-flex align-items-center m-0 gx-2 justify-content-evenly">
+                                            <div class="col-3 pill"></div>
+                                            <div class="col-3 pill"></div>
+                                            <div class="col-3 pill"></div>
+                                        </div>
+                                    </div>
+                                    <div class="player-name">(username)</div>
+                                </div>
+                                <div class="col-5 computer d-grid">
+                                    <div class="score-bar-comp w-100">
+                                        <div class="row d-flex align-items-center m-0 gx-2 justify-content-evenly">
+                                            <div class="col-3 pill-2"></div>
+                                            <div class="col-3 pill-2"></div>
+                                            <div class="col-3 pill-2"></div>
+                                        </div>
+                                    </div>
+                                    <div class="comp-name">Computer</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="comp-name">Computer</div>
+                    </header>
+                    <main>
+                        <div class="container">
+                            <div class="images">
+                                <div class="player-images"></div>
+                                <div class="computer-images"></div>
+                            </div>
+                            <div class="row justify-content-around align-items-center m-5">
+                                <div
+                                    class="col-3 position-relative p-0 d-flex align-items-center justify-content-center rock">
+                                    <img class="indicator position-absolute img-fliud" src="Group 1.png">
+                                    <button class="btn btn-dark w-100">rock</button>
+                                </div>
+                                <div
+                                    class="col-3 position-relative d-flex align-items-center justify-content-center paper">
+                                    <img class="indicator position-absolute img-fliud" src="Group 1.png">
+                                    <button class="btn btn-dark w-100">paper</button>
+                                </div>
+                                <div
+                                    class="col-3 position-relative d-flex align-items-center justify-content-center scissors">
+                                    <img class="indicator position-absolute img-fliud" src="Group 1.png">
+                                    <button class="btn btn-dark w-100">scissors</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </main>
+                    <footer>
+                        <!-- place footer here -->
+                    </footer>
                 </div>
             </div>
+
+
         </div>
-    </header>
-    <main>
-        <div class="container">
-            <div class="row justify-content-around align-items-center m-5">
-                <div class="col-3 position-relative p-0 d-flex align-items-center justify-content-center rock">
-                    <img class="indicator position-absolute img-fliud" src="Group 1.png">
-                    <button class="btn btn-dark w-100">rock</button>
-                </div>
-                <div class="col-3 position-relative d-flex align-items-center justify-content-center paper">
-                    <img class="indicator position-absolute img-fliud" src="Group 1.png">
-                    <button class="btn btn-dark w-100">paper</button>
-                </div>
-                <div class="col-3 position-relative d-flex align-items-center justify-content-center scissors">
-                    <img class="indicator position-absolute img-fliud" src="Group 1.png">
-                    <button class="btn btn-dark w-100">scissors</button>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
+    </div>
+
+
+
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
