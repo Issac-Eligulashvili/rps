@@ -66,3 +66,7 @@ body,html {
     max-height: 250px;
     border: 10px rgba(245, 245, 245, 0) solid;
 }
+
+.margin {
+    margin-top: 3.8rem;
+}
