@@ -2,7 +2,9 @@ let playerFist = document.querySelector('.fist');
 let compFist = document.querySelector('.comp-fist');
 let deltaTime = 65;
 let playerChoice = '';
-const computerChoice = getComputerChoice();
+let computerChoice = getComputerChoice();
+let compScore = 0;
+let playerScore = 0;
 
  function shake() {
     let fistShakeAnim = setInterval(function() {
@@ -121,11 +123,6 @@ function animations() {
       }
 }
 
-function rock() {
-    playerChoice = 'rock';
-    animations();
-}
-
 function getComputerChoice() {
     const numba = Math.floor(Math.random()*3);
   
@@ -142,38 +139,34 @@ function getComputerChoice() {
     }
 }
 
-
-
-  
-
   function determineWinner(playerChoice, computerChoice){
 
-    if (playerChoice === computerChoice) {    
-
-    }
-  
-    if (playerChoice === 'rock') {
-      if (computerChoice === 'paper') {
-        
-      } else {
-        
-      }
-    }
+    
     if (playerChoice === 'paper') {
       if (computerChoice === 'scissors') {
-        
+        compScore+1;
       } else {
-        
+        playerScore+1;
       }
     }
     if (playerChoice === 'scissors') {
       if (computerChoice === 'rock') {
-        
+        compScore+1;
       } else {
-        
+        playerScore+1;
       }
     }
   }
+
+function rock() {
+    playerChoice = 'rock';
+    animations();
+    if (computerChoice === 'paper') {
+        compScore + 1;
+      } else {
+        playerScore + 1;
+      }
+}
 
 
 
