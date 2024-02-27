@@ -24,7 +24,8 @@
                         <div class="col-2 stripe blue"></div>
                     </div>
                 </div>
-                <div class="screen mt-5">
+                <div class="screen mt-5 position-relative">
+                    <div class="lines"></div>
                     <header>
                         <!-- Score Goes here -->
                         <div class="container-fluid">
@@ -72,15 +73,15 @@
                 <div class="row justify-content-around align-items-center margin">
                     <div class="col-3 position-relative p-0 d-flex align-items-center justify-content-center rock">
                         <img class="indicator img-fliud" src="Group 1.png">
-                        <button class="btn btn-dark position-absolute player-choice-btn" onclick="rock(); determineWinner(playerChoice, computerChoice)" id="rock">rock</button>
+                        <button class="btn btn-dark position-absolute player-choice-btn" id="rock">rock</button>
                     </div>
                     <div class="col-3 position-relative d-flex align-items-center justify-content-center paper">
                         <img class="indicator img-fliud" src="Group 1.png">
-                        <button class="btn btn-dark position-absolute player-choice-btn" onclick="paper()" id="paper">paper</button>
+                        <button class="btn btn-dark position-absolute player-choice-btn" id="paper">paper</button>
                     </div>
                     <div class="col-3 position-relative d-flex align-items-center justify-content-center scissors">
                         <img class="indicator img-fliud" src="Group 1.png">
-                        <button class="btn btn-dark position-absolute player-choice-btn" onclick="scissors()" id="scissors">scissors</button>
+                        <button class="btn btn-dark position-absolute player-choice-btn" id="scissors">scissors</button>
                     </div>
                 </div>
             </div>
