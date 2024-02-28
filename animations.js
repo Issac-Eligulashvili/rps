@@ -8,6 +8,7 @@ let computerChoice = getComputerChoice();
 let rockBtn = document.querySelector('#rock');
 let paperBtn = document.querySelector('#paper');
 let scissorsBtn = document.querySelector('#scissors');
+let playerChoices = ['rock', 'paper', 'scissors']
 
 function shake() {
     let fistShakeAnim = setInterval(function () {
@@ -315,7 +316,7 @@ function determineWinner(playerChoice, computerChoice) {
 
 function playGame() {
     function handleRock() {
-        playerChoice = 'rock';
+        playerChoice = playerChoices[0];
         computerChoice = getComputerChoice();
         animations();
         determineWinner(playerChoice, computerChoice);
@@ -324,7 +325,7 @@ function playGame() {
     }
 
     function handlePaper() {
-        playerChoice = 'paper';
+        playerChoice = playerChoices[1];
         computerChoice = getComputerChoice();
         animations();
         determineWinner(playerChoice, computerChoice);
@@ -333,7 +334,7 @@ function playGame() {
     }
 
     function handleScissors() {
-        playerChoice = 'scissors';
+        playerChoice = playerChoices[2];
         computerChoice = getComputerChoice();
         animations();
         determineWinner(playerChoice, computerChoice);
@@ -348,3 +349,48 @@ function playGame() {
 }
 
 playGame();
+
+function turnOn() {
+    const cover = document.querySelector('.getUsernameScreen');
+    cover.classList.add('turn-on');
+}
+
+let inputBox = document.querySelector('#userName');
+let usernameArray = [];
+let isPlaying = false;
+
+// GETTING USERNAME FOR GAME!!!!! 
+
+inputBox.addEventListener('input', function() {
+    usernameArray = inputBox.value.split('');
+    if (usernameArray[0] === undefined) {
+        usernameArray[0] = '‎ ';
+    }
+    if (usernameArray[1] === undefined) {
+        usernameArray[1] = '‎ ';
+    }
+    if (usernameArray[2] === undefined) {
+        usernameArray[2] = '‎ ';
+    }
+    document.querySelector('#box1').innerText = usernameArray[0];
+    document.querySelector('#box2').innerText = usernameArray[1];
+    document.querySelector('#box3').innerText = usernameArray[2];
+});
+
+if (isPlaying === false) {
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            const scene1 = document.querySelector('.getUsernameScreen')
+            const scene2 = document.querySelector('.cover');
+            const usernameTextBox = document.querySelector('#usernameText'); 
+            
+            scene1.classList.add('d-none');
+            scene2.classList.remove('d-none');
+
+            isPlaying = true;
+
+            usernameTextBox.innerText = inputBox.value;
+
+        }
+    })
+}

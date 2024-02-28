@@ -57,9 +57,9 @@ body,html {
 
 .screen {
     width: 65%;
-    aspect-ratio: 3 / 1.5;
+    aspect-ratio: 3 / 4;
     border-radius: 90px 93px 93px 93px / 15px 15px 15px 15px;
-    background-color: rgb(0, 255, 255);
+    background-color: rgb(0, 0, 0);
     padding: 20px;
 }
 
@@ -97,7 +97,7 @@ body,html {
     background-color: #2c0b0e;
 }
 
-.arcade {
+.arcade-font {
     font-family: Arcade;
 }
 
@@ -112,7 +112,7 @@ body,html {
     width: 100%;
     margin-top: -30px;
 }
-
+/* VHS AFFECT FROM https://codepen.io/pbitos/pen/zypwVr */
 .lines {
 	left: 0;
 	top: 0;
@@ -134,7 +134,7 @@ body,html {
 	background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, .5) 51%);
 	background-size: 100% 4px;
 	will-change: background, background-size;
-	animation: scanlines 0.2s linear infinite;
+	animation: scanlines .2s linear infinite;
 }
 
 @keyframes scanlines {
@@ -170,4 +170,165 @@ body,html {
 	100% {
 		opacity: 0.6;
 	}
+}
+
+.getUsernameScreen {
+    position: absolute;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    background-color: #0c0c0c;
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    text-align: center;
+}
+
+.input-container {
+    width: 80%;
+}
+
+.word {
+    top: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.bar {
+    width: 1.75rem;
+    height: 5px;
+}
+
+.usernameInput {
+    width: 100%;
+    letter-spacing: 2rem;
+    opacity: 0;
+}
+
+.bar {
+    background: white;
+    height: 4px;
+    width: 1.75rem;
+    display: block;
+    margin: auto;
+}
+
+.cover {
+    position: absolute;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    background-color: #0c0c0c;
+}
+
+.height {
+    height: 100%;
+}
+
+.turn-on {
+    animation: turnOn .23s ease-in forwards;
+}
+
+@keyframes turnOn {
+    0% {
+        clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    }
+
+    16% {
+        clip-path: polygon(15% 45%, 86% 45%, 86% 60%, 15% 60%);
+    }
+
+    30% {
+        clip-path: polygon(0 45%, 100% 45%, 100% 60%, 0 60%);
+    }
+
+    100% {
+        clip-path: border-box;
+    }
+}
+
+.pwrBtn {
+    background-color: transparent;
+    border: 0;
+}
+
+.pwrBtn:hover {
+    cursor: pointer;
+    filter: hue-rotate(57deg);
+}
+
+.pwrBtn:active {
+    cursor: pointer;
+    filter: hue-rotate(0deg) saturate(1) brightness(50%);
+}
+
+.start-screen {
+    height: 100%;
+}
+
+.flicker {
+    animation: flicker 2s linear infinite;
+}
+
+.z-index {
+    z-index: -1;
+}
+
+.vhs-text {
+    animation: rgbText 2s steps(9) 0s infinite alternate;
+}
+
+/* RBG TEXT FROM https://codepen.io/pbitos/pen/zypwVr */
+@keyframes rgbText {
+	0% {
+		text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 0px 0 1px rgba(251, 0, 231, 0.8), 0 0px 3px rgba(0, 233, 235, 0.8), 0px 0 3px rgba(0, 242, 14, 0.8), 0 0px 3px rgba(244, 45, 0, 0.8), 0px 0 3px rgba(59, 0, 226, 0.8);
+	}
+	25% {
+		text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 0px 0 1px rgba(251, 0, 231, 0.8), 0 0px 3px rgba(0, 233, 235, 0.8), 0px 0 3px rgba(0, 242, 14, 0.8), 0 0px 3px rgba(244, 45, 0, 0.8), 0px 0 3px rgba(59, 0, 226, 0.8);
+	}
+	45% {
+		text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 5px 0 1px rgba(251, 0, 231, 0.8), 0 5px 1px rgba(0, 233, 235, 0.8), -5px 0 1px rgba(0, 242, 14, 0.8), 0 -5px 1px rgba(244, 45, 0, 0.8), 5px 0 1px rgba(59, 0, 226, 0.8);
+	}
+	50% {
+		text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), -5px 0 1px rgba(251, 0, 231, 0.8), 0 -5px 1px rgba(0, 233, 235, 0.8), 5px 0 1px rgba(0, 242, 14, 0.8), 0 5px 1px rgba(244, 45, 0, 0.8), -5px 0 1px rgba(59, 0, 226, 0.8);
+	}
+	55% {
+		text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 0px 0 3px rgba(251, 0, 231, 0.8), 0 0px 3px rgba(0, 233, 235, 0.8), 0px 0 3px rgba(0, 242, 14, 0.8), 0 0px 3px rgba(244, 45, 0, 0.8), 0px 0 3px rgba(59, 0, 226, 0.8);
+	}
+	90% {
+		text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), -5px 0 1px rgba(251, 0, 231, 0.8), 0 5px 1px rgba(0, 233, 235, 0.8), 5px 0 1px rgba(0, 242, 14, 0.8), 0 -5px 1px rgba(244, 45, 0, 0.8), 5px 0 1px rgba(59, 0, 226, 0.8);
+	}
+	100% {
+		text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 5px 0 1px rgba(251, 0, 231, 0.8), 0 -5px 1px rgba(0, 233, 235, 0.8), -5px 0 1px rgba(0, 242, 14, 0.8), 0 5px 1px rgba(244, 45, 0, 0.8), -5px 0 1px rgba(59, 0, 226, 0.8);
+	}
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .screen {
+        aspect-ratio: 3 / 1.5;
+    }
+
+    .stripe {
+        aspect-ratio: 3/1; 
+    }
+
+    .margin {
+        margin-top: 0;
+    }
 }
