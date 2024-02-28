@@ -258,7 +258,7 @@ body,html {
 
 .pwrBtn:hover {
     cursor: pointer;
-    filter: hue-rotate(57deg);
+    filter: hue-rotate(36deg);
 }
 
 .pwrBtn:active {
