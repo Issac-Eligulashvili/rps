@@ -381,6 +381,10 @@ let isPlaying = false;
 
 
 inputBox.addEventListener('input', function() {
+    let revealSound = new Audio("typing.mp3");
+    revealSound.play()
+    revealSound.volume = 0.2;
+
     usernameArray = inputBox.value.split('');
     if (usernameArray[0] === undefined) {
         usernameArray[0] = '‎ ';
