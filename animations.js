@@ -8,7 +8,8 @@ let computerChoice = getComputerChoice();
 let rockBtn = document.querySelector('#rock');
 let paperBtn = document.querySelector('#paper');
 let scissorsBtn = document.querySelector('#scissors');
-let playerChoices = ['rock', 'paper', 'scissors']
+let playerChoices = ['rock', 'paper', 'scissors'];
+let isAnimating = false;
 
 function shake() {
     let fistShakeAnim = setInterval(function () {
@@ -83,7 +84,7 @@ function playerScissors() {
         playerFist.src = "fist pump animations/player frames/scissors/4.png";
     }, deltaTime * 53);
     setTimeout(function () {
-        playerFist.src = "fist pump animations/player frames/scissors/5.png";
+        playerFist.src = "fist pump animations/player frames/scissors/5.png"; isAnimating = false;
     }, deltaTime * 54);
 }
 function playerRock() {
@@ -101,7 +102,7 @@ function playerRock() {
         playerFist.src = "fist pump animations/player frames/rock/4.png";
     }, deltaTime * 53);
     setTimeout(function () {
-        playerFist.src = "fist pump animations/player frames/rock/5.png";
+        playerFist.src = "fist pump animations/player frames/rock/5.png"; isAnimating = false;
     }, deltaTime * 54);
 }
 
@@ -178,7 +179,7 @@ function compRock() {
         compFist.src = "fist pump animations/computer frames/rock/4.png";
     }, deltaTime * 53);
     setTimeout(function () {
-        compFist.src = "fist pump animations/computer frames/rock/5.png";
+        compFist.src = "fist pump animations/computer frames/rock/5.png"; isAnimating = false;
     }, deltaTime * 54);
 }
 
@@ -197,7 +198,7 @@ function compScissors() {
         compFist.src = "fist pump animations/computer frames/scissors/4.png";
     }, deltaTime * 53);
     setTimeout(function () {
-        compFist.src = "fist pump animations/computer frames/scissors/5.png";
+        compFist.src = "fist pump animations/computer frames/scissors/5.png"; isAnimating = false;
     }, deltaTime * 54);
 }
 
@@ -216,8 +217,8 @@ function compPaper() {
         compFist.src = "fist pump animations/computer frames/paper/2.png";
     }, deltaTime * 53);
     setTimeout(function () {
-        compFist.src = "fist pump animations/computer frames/paper/1.png";
-    }, deltaTime * 54);
+        compFist.src = "fist pump animations/computer frames/paper/1.png"; isAnimating = false;
+    }, deltaTime * 54); 
 }
 
 function playerPaper() {
@@ -235,12 +236,14 @@ function playerPaper() {
         playerFist.src = "fist pump animations/player frames/paper/1.png";
     }, deltaTime * 53);
     setTimeout(function () {
-        playerFist.src = "fist pump animations/player frames/paper/2.png";
+        playerFist.src = "fist pump animations/player frames/paper/2.png"; isAnimating = false;
     }, deltaTime * 54);
 
 }
 
 function animations() {
+    isAnimating = true;
+
     switch (computerChoice) {
         case "rock":
             compRock();
@@ -314,12 +317,28 @@ function determineWinner(playerChoice, computerChoice) {
     computerChoice = '';
 }
 
+function updateScore() {
+    let playerHealth = document.querySelector('#playerHealth .pill:nth-child(' + playerScore + ')');
+    let compHealth = document.querySelector('#compHealth .pill-2:nth-last-child(' + compScore + ')');
+
+    console.log(playerHealth)
+
+    if (playerHealth != null || playerHealth != undefined ) {
+        playerHealth.classList.add('won');
+    }
+
+    if (compHealth != null || compHealth != undefined ) {
+        compHealth.classList.add('won');
+    }
+}
+
 function playGame() {
     function handleRock() {
         playerChoice = playerChoices[0];
         computerChoice = getComputerChoice();
         animations();
         determineWinner(playerChoice, computerChoice);
+        setTimeout(updateScore, deltaTime * 54);
         console.log(playerScore);
         console.log(compScore);
     }
@@ -329,6 +348,7 @@ function playGame() {
         computerChoice = getComputerChoice();
         animations();
         determineWinner(playerChoice, computerChoice);
+        setTimeout(updateScore, deltaTime * 54);
         console.log(playerScore);
         console.log(compScore);
     }
@@ -338,6 +358,7 @@ function playGame() {
         computerChoice = getComputerChoice();
         animations();
         determineWinner(playerChoice, computerChoice);
+        setTimeout(updateScore, deltaTime * 54);
         console.log(playerScore);
         console.log(compScore);
     }
@@ -345,7 +366,7 @@ function playGame() {
     rockBtn.addEventListener('click', handleRock);
     paperBtn.addEventListener('click', handlePaper);
     scissorsBtn.addEventListener('click', handleScissors);
-    
+
 }
 
 playGame();
