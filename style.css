@@ -15,7 +15,7 @@ body,html {
 .score-bar {
     transform: skew(20deg);
     height: 20px;
-    background: rgb(4, 5, 78);
+    background: rgb(113 3 3);
     padding: 5px;
 }
 .score-bar-comp {
@@ -292,6 +292,55 @@ body,html {
 .vhs-text {
     animation: rgbText 2s steps(9) 0s infinite alternate;
 }
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0c0c0c;
+}
+
+.loading-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.box {
+    background-color: white;
+    aspect-ratio: 1/1;
+    width: 20px;
+    opacity: 0; /* Set initial opacity to 1 to make it instantly visible */
+    animation: loading 1s infinite;
+  }
+
+  .fontSize {
+    font-size: 3rem;
+  }
+  
+  .box:nth-of-type(2) {
+    animation-delay: .2s;
+  }
+  
+  .box:nth-of-type(3) {
+    animation-delay: .3s;
+  }
+  
+  @keyframes loading {
+    0% { /* Set 0% keyframe with opacity 0 */
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 
 /* RBG TEXT FROM https://codepen.io/pbitos/pen/zypwVr */
 @keyframes rgbText {

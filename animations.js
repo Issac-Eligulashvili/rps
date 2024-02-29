@@ -1,3 +1,9 @@
+window.addEventListener('load', function(){
+    const loader = this.document.querySelector('#loader');
+    loader.classList.add('loading-hidden');
+})
+
+
 let playerFist = document.querySelector(".fist");
 let compFist = document.querySelector(".comp-fist");
 let deltaTime = 65;
