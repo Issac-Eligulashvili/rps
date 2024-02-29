@@ -339,8 +339,6 @@ function playGame() {
         animations();
         determineWinner(playerChoice, computerChoice);
         setTimeout(updateScore, deltaTime * 54);
-        console.log(playerScore);
-        console.log(compScore);
     }
 
     function handlePaper() {
@@ -349,8 +347,6 @@ function playGame() {
         animations();
         determineWinner(playerChoice, computerChoice);
         setTimeout(updateScore, deltaTime * 54);
-        console.log(playerScore);
-        console.log(compScore);
     }
 
     function handleScissors() {
@@ -359,8 +355,6 @@ function playGame() {
         animations();
         determineWinner(playerChoice, computerChoice);
         setTimeout(updateScore, deltaTime * 54);
-        console.log(playerScore);
-        console.log(compScore);
     }
 
     rockBtn.addEventListener('click', handleRock);
@@ -376,11 +370,15 @@ function turnOn() {
     cover.classList.add('turn-on');
 }
 
+
+// GETTING USERNAME FOR GAME!!!!! 
+
+
 let inputBox = document.querySelector('#userName');
 let usernameArray = [];
 let isPlaying = false;
 
-// GETTING USERNAME FOR GAME!!!!! 
+
 
 inputBox.addEventListener('input', function() {
     usernameArray = inputBox.value.split('');
