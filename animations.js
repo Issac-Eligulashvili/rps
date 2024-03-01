@@ -16,6 +16,10 @@ let paperBtn = document.querySelector('#paper');
 let scissorsBtn = document.querySelector('#scissors');
 let playerChoices = ['rock', 'paper', 'scissors'];
 let isAnimating = false;
+let roundWinSound = new Audio('sfx/win.mp3');
+let roundLoseSound = new Audio('sfx/lose.mp3');
+let isPlaying = false;
+
 
 function shake() {
     let fistShakeAnim = setInterval(function () {
@@ -275,6 +279,52 @@ function animations() {
     }
 }
 
+// GETTING USERNAME FOR GAME!!!!! 
+
+
+let inputBox = document.querySelector('#userName');
+let usernameArray = [];
+
+inputBox.addEventListener('input', function () {
+    let revealSound = new Audio("typing.mp3");
+    revealSound.play()
+    revealSound.volume = 0.2;
+
+    usernameArray = inputBox.value.split('');
+    if (usernameArray[0] === undefined) {
+        usernameArray[0] = '‎ ';
+    }
+    if (usernameArray[1] === undefined) {
+        usernameArray[1] = '‎ ';
+    }
+    if (usernameArray[2] === undefined) {
+        usernameArray[2] = '‎ ';
+    }
+    document.querySelector('#box1').innerText = usernameArray[0];
+    document.querySelector('#box2').innerText = usernameArray[1];
+    document.querySelector('#box3').innerText = usernameArray[2];
+});
+
+if (isPlaying === false) {
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            const scene1 = document.querySelector('.getUsernameScreen')
+            const scene2 = document.querySelector('.cover');
+            const usernameTextBox = document.querySelector('#usernameText');
+
+            scene1.classList.add('d-none');
+            scene2.classList.remove('d-none');
+
+            isPlaying = true;
+            playGame();
+
+            usernameTextBox.innerText = inputBox.value;
+
+        }
+    })
+}
+
+
 function getComputerChoice() {
     const numba = Math.floor(Math.random() * 3);
 
@@ -292,9 +342,7 @@ function getComputerChoice() {
 }
 
 function determineWinner(playerChoice, computerChoice) {
-    let roundWinSound = new Audio('sfx/win.mp3');
     roundWinSound.volume = 0.2;
-    let roundLoseSound = new Audio('sfx/lose.mp3');
     roundLoseSound.volume = 0.2;
 
 
@@ -364,35 +412,36 @@ function updateScore() {
 function playGame() {
     let selectSound = new Audio("blipSelect.wav");
 
-
-    function handleRock() {
-        playerChoice = playerChoices[0];
-        computerChoice = getComputerChoice();
-        animations();
-        determineWinner(playerChoice, computerChoice);
-        setTimeout(updateScore, deltaTime * 54);
-        selectSound.play()
-        selectSound.volume = 0.2;
-    }
-
-    function handlePaper() {
-        playerChoice = playerChoices[1];
-        computerChoice = getComputerChoice();
-        animations();
-        determineWinner(playerChoice, computerChoice);
-        setTimeout(updateScore, deltaTime * 54);
-        selectSound.play()
-        selectSound.volume = 0.2;
-    }
-
-    function handleScissors() {
-        playerChoice = playerChoices[2];
-        computerChoice = getComputerChoice();
-        animations();
-        determineWinner(playerChoice, computerChoice);
-        setTimeout(updateScore, deltaTime * 54);
-        selectSound.play()
-        selectSound.volume = 0.2;
+    if (isPlaying === true) {
+        function handleRock() {
+            playerChoice = playerChoices[0];
+            computerChoice = getComputerChoice();
+            animations();
+            determineWinner(playerChoice, computerChoice);
+            setTimeout(updateScore, deltaTime * 54);
+            selectSound.play()
+            selectSound.volume = 0.2;
+        }
+    
+        function handlePaper() {
+            playerChoice = playerChoices[1];
+            computerChoice = getComputerChoice();
+            animations();
+            determineWinner(playerChoice, computerChoice);
+            setTimeout(updateScore, deltaTime * 54);
+            selectSound.play()
+            selectSound.volume = 0.2;
+        }
+    
+        function handleScissors() {
+            playerChoice = playerChoices[2];
+            computerChoice = getComputerChoice();
+            animations();
+            determineWinner(playerChoice, computerChoice);
+            setTimeout(updateScore, deltaTime * 54);
+            selectSound.play()
+            selectSound.volume = 0.2;
+        }
     }
 
     rockBtn.addEventListener('click', handleRock);
@@ -401,101 +450,53 @@ function playGame() {
 
 }
 
-playGame();
-
 function turnOn() {
     const cover = document.querySelector('.getUsernameScreen');
     cover.classList.add('turn-on');
-}
-
-
-// GETTING USERNAME FOR GAME!!!!! 
-
-
-let inputBox = document.querySelector('#userName');
-let usernameArray = [];
-let isPlaying = false;
-
-
-
-inputBox.addEventListener('input', function () {
-    let revealSound = new Audio("typing.mp3");
-    revealSound.play()
-    revealSound.volume = 0.2;
-
-    usernameArray = inputBox.value.split('');
-    if (usernameArray[0] === undefined) {
-        usernameArray[0] = '‎ ';
-    }
-    if (usernameArray[1] === undefined) {
-        usernameArray[1] = '‎ ';
-    }
-    if (usernameArray[2] === undefined) {
-        usernameArray[2] = '‎ ';
-    }
-    document.querySelector('#box1').innerText = usernameArray[0];
-    document.querySelector('#box2').innerText = usernameArray[1];
-    document.querySelector('#box3').innerText = usernameArray[2];
-});
-
-if (isPlaying === false) {
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            const scene1 = document.querySelector('.getUsernameScreen')
-            const scene2 = document.querySelector('.cover');
-            const usernameTextBox = document.querySelector('#usernameText');
-
-            scene1.classList.add('d-none');
-            scene2.classList.remove('d-none');
-
-            isPlaying = true;
-
-            usernameTextBox.innerText = inputBox.value;
-
-        }
-    })
 }
 
 // User Win Stuff
 
 function checkPlayerScore() {
     if (playerScore === 3) {
-        const winScreen = document.querySelector('#winScreen');
-        winScreen.classList.remove('d-none');
-        winScreen.classList.add('d-flex');
-        const gameWinSound = new Audio('sfx/game win.mp3');
-        gameWinSound.volume = 0.2;
-        gameWinSound.play();
+        setTimeout(function () {
+            roundWinSound.pause();
+            const winScreen = document.querySelector('#winScreen');
+            winScreen.classList.remove('d-none');
+            winScreen.classList.add('d-flex');
+            const gameWinSound = new Audio('sfx/game win.mp3');
+            gameWinSound.volume = 0.2;
+            gameWinSound.play();
 
-        //confetti
-        var defaults = { startVelocity: 10, spread: 150, ticks: 20, zIndex: -1 };
+            //confetti
+            var defaults = { startVelocity: 10, spread: 150, ticks: 20, zIndex: -1 };
 
-        function randomInRange(min, max) {
-            return Math.random() * (max - min) + min;
-        }
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
 
-        var myCanvas = document.createElement('canvas');
-        winScreen.appendChild(myCanvas);
-        myCanvas.classList.add('canvas-styling');
+            var myCanvas = document.createElement('canvas');
+            winScreen.appendChild(myCanvas);
+            myCanvas.classList.add('canvas-styling');
 
-        myCanvas.width = winScreen.offsetWidth;
-        myCanvas.height = winScreen.offsetHeight;
-
-        window.addEventListener('resize', function (e) {
             myCanvas.width = winScreen.offsetWidth;
             myCanvas.height = winScreen.offsetHeight;
-        })
-        var myConfetti = confetti.create(myCanvas, {
-            resize: true,
-        });
-        var interval = setInterval(function () {
 
-            var particleCount = 50;
-            // since particles fall down, start a bit higher than random
-            myConfetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, shapes: ['square'] });
-            myConfetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2, }, shapes: ['square'] });
-        }, 250);
+            window.addEventListener('resize', function (e) {
+                myCanvas.width = winScreen.offsetWidth;
+                myCanvas.height = winScreen.offsetHeight;
+            })
+            var myConfetti = confetti.create(myCanvas, {
+                resize: true,
+            });
+            var interval = setInterval(function () {
 
+                var particleCount = 50;
+                // since particles fall down, start a bit higher than random
+                myConfetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, shapes: ['square'] });
+                myConfetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2, }, shapes: ['square'] });
+            }, 250);
+        }, deltaTime * 54)
         clearInterval(scoreCheck);
     }
 }
