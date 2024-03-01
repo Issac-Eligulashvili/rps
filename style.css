@@ -280,7 +280,12 @@ body,html {
     }
 }
 
-
+.reset-button {
+    background-color: rgb(129, 129, 129);
+    width: 35%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
 
 .pwrBtn {
     background-color: transparent;

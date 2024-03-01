@@ -496,7 +496,7 @@ function checkPlayerScore() {
                 myConfetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, shapes: ['square'] });
                 myConfetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2, }, shapes: ['square'] });
             }, 250);
-        }, deltaTime * 54)
+        }, deltaTime * 56)
         clearInterval(scoreCheck);
     }
 }
