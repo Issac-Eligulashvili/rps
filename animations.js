@@ -19,6 +19,9 @@ let isAnimating = false;
 let roundWinSound = new Audio('sfx/win.mp3');
 let roundLoseSound = new Audio('sfx/lose.mp3');
 let isPlaying = false;
+const scene1 = document.querySelector('.getUsernameScreen');
+const scene2 = document.querySelector('.cover');
+const winScreen = document.querySelector('#winScreen');
 
 
 function shake() {
@@ -308,8 +311,6 @@ inputBox.addEventListener('input', function () {
 if (isPlaying === false) {
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
-            const scene1 = document.querySelector('.getUsernameScreen')
-            const scene2 = document.querySelector('.cover');
             const usernameTextBox = document.querySelector('#usernameText');
 
             scene1.classList.add('d-none');
@@ -451,8 +452,7 @@ function playGame() {
 }
 
 function turnOn() {
-    const cover = document.querySelector('.getUsernameScreen');
-    cover.classList.add('turn-on');
+    scene1.classList.add('turn-on');
 }
 
 // User Win Stuff
@@ -461,7 +461,6 @@ function checkPlayerScore() {
     if (playerScore === 3) {
         setTimeout(function () {
             roundWinSound.pause();
-            const winScreen = document.querySelector('#winScreen');
             winScreen.classList.remove('d-none');
             winScreen.classList.add('d-flex');
             const gameWinSound = new Audio('sfx/game win.mp3');
@@ -503,6 +502,23 @@ function checkPlayerScore() {
 
 let scoreCheck = setInterval(checkPlayerScore, 1000);
 
+function replayGame() {
+    winScreen.classList.remove('d-flex');
+    winScreen.classList.add('d-none');
+    document.querySelectorAll('.won').forEach(function(element) {
+        element.classList.remove('won');
+    })   
+    scoreCheck = setInterval(checkPlayerScore, 1000);
+
+    
+    
+    playerScore = 0;
+    compScore = 0;
+    
+
+
+    scene2.classList.remove('d-none');
+}
 
 
 
