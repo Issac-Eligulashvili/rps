@@ -292,6 +292,11 @@ function getComputerChoice() {
 }
 
 function determineWinner(playerChoice, computerChoice) {
+    let roundWinSound = new Audio('sfx/win.mp3');
+    roundWinSound.volume = 0.2;
+    let roundLoseSound = new Audio('sfx/lose.mp3');
+    roundLoseSound.volume = 0.2;
+
 
     if (playerChoice === computerChoice) {
         console.log("TIE!!!");
@@ -300,22 +305,40 @@ function determineWinner(playerChoice, computerChoice) {
     if (playerChoice === "paper") {
         if (computerChoice === "scissors") {
             compScore++;
+            setTimeout(function() {
+              roundLoseSound.play();  
+            }, deltaTime * 54) 
         } else if (computerChoice === 'rock') {
             playerScore++;
+            setTimeout(function() {
+                roundWinSound.play();  
+              }, deltaTime * 54) 
         }
     }
     if (playerChoice === "scissors") {
         if (computerChoice === "rock") {
             compScore++;
+            setTimeout(function() {
+                roundLoseSound.play();  
+              }, deltaTime * 54) 
         } else if (computerChoice === "paper") {
             playerScore++;
+            setTimeout(function() {
+                roundWinSound.play();  
+              }, deltaTime * 54) 
         }
     }
     if (playerChoice === "rock") {
         if (computerChoice === "paper") {
             compScore++;
+            setTimeout(function() {
+                roundLoseSound.play();  
+              }, deltaTime * 54) 
         } else if (computerChoice === 'scissors') {
             playerScore++;
+            setTimeout(function() {
+                roundWinSound.play();  
+              }, deltaTime * 54) 
         }
     }
 
@@ -339,12 +362,17 @@ function updateScore() {
 }
 
 function playGame() {
+    let selectSound = new Audio("blipSelect.wav");
+    
+
     function handleRock() {
         playerChoice = playerChoices[0];
         computerChoice = getComputerChoice();
         animations();
         determineWinner(playerChoice, computerChoice);
         setTimeout(updateScore, deltaTime * 54);
+        selectSound.play()
+        selectSound.volume = 0.2;
     }
 
     function handlePaper() {
@@ -353,6 +381,8 @@ function playGame() {
         animations();
         determineWinner(playerChoice, computerChoice);
         setTimeout(updateScore, deltaTime * 54);
+        selectSound.play()
+        selectSound.volume = 0.2;
     }
 
     function handleScissors() {
@@ -361,6 +391,8 @@ function playGame() {
         animations();
         determineWinner(playerChoice, computerChoice);
         setTimeout(updateScore, deltaTime * 54);
+        selectSound.play()
+        selectSound.volume = 0.2;
     }
 
     rockBtn.addEventListener('click', handleRock);

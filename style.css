@@ -244,6 +244,7 @@ body,html {
     animation: turnOn .23s ease-in forwards;
 }
 
+
 @keyframes turnOn {
     0% {
         clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
@@ -261,6 +262,8 @@ body,html {
         clip-path: border-box;
     }
 }
+
+
 
 .pwrBtn {
     background-color: transparent;
@@ -381,7 +384,7 @@ body,html {
 
 @media (min-width: 768px) {
     .screen {
-        aspect-ratio: 3 / 1.5;
+        aspect-ratio: 2 / 1;
     }
 
     .screen-bg {
