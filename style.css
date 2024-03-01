@@ -236,6 +236,23 @@ body,html {
     background-color: #0c0c0c;
 }
 
+.win-screen {
+    position: absolute;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    background-color: #0c0c0c;
+}
+
+.canvas-styling {
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
 .height {
     height: 100%;
 }

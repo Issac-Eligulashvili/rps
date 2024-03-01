@@ -1,4 +1,4 @@
-window.addEventListener('load', function(){
+window.addEventListener('load', function () {
     const loader = this.document.querySelector('#loader');
     loader.classList.add('loading-hidden');
 })
@@ -224,7 +224,7 @@ function compPaper() {
     }, deltaTime * 53);
     setTimeout(function () {
         compFist.src = "fist pump animations/computer frames/paper/1.png"; isAnimating = false;
-    }, deltaTime * 54); 
+    }, deltaTime * 54);
 }
 
 function playerPaper() {
@@ -305,40 +305,40 @@ function determineWinner(playerChoice, computerChoice) {
     if (playerChoice === "paper") {
         if (computerChoice === "scissors") {
             compScore++;
-            setTimeout(function() {
-              roundLoseSound.play();  
-            }, deltaTime * 54) 
+            setTimeout(function () {
+                roundLoseSound.play();
+            }, deltaTime * 54)
         } else if (computerChoice === 'rock') {
             playerScore++;
-            setTimeout(function() {
-                roundWinSound.play();  
-              }, deltaTime * 54) 
+            setTimeout(function () {
+                roundWinSound.play();
+            }, deltaTime * 54)
         }
     }
     if (playerChoice === "scissors") {
         if (computerChoice === "rock") {
             compScore++;
-            setTimeout(function() {
-                roundLoseSound.play();  
-              }, deltaTime * 54) 
+            setTimeout(function () {
+                roundLoseSound.play();
+            }, deltaTime * 54)
         } else if (computerChoice === "paper") {
             playerScore++;
-            setTimeout(function() {
-                roundWinSound.play();  
-              }, deltaTime * 54) 
+            setTimeout(function () {
+                roundWinSound.play();
+            }, deltaTime * 54)
         }
     }
     if (playerChoice === "rock") {
         if (computerChoice === "paper") {
             compScore++;
-            setTimeout(function() {
-                roundLoseSound.play();  
-              }, deltaTime * 54) 
+            setTimeout(function () {
+                roundLoseSound.play();
+            }, deltaTime * 54)
         } else if (computerChoice === 'scissors') {
             playerScore++;
-            setTimeout(function() {
-                roundWinSound.play();  
-              }, deltaTime * 54) 
+            setTimeout(function () {
+                roundWinSound.play();
+            }, deltaTime * 54)
         }
     }
 
@@ -352,18 +352,18 @@ function updateScore() {
 
     console.log(playerHealth)
 
-    if (playerHealth != null || playerHealth != undefined ) {
+    if (playerHealth != null || playerHealth != undefined) {
         playerHealth.classList.add('won');
     }
 
-    if (compHealth != null || compHealth != undefined ) {
+    if (compHealth != null || compHealth != undefined) {
         compHealth.classList.add('won');
     }
 }
 
 function playGame() {
     let selectSound = new Audio("blipSelect.wav");
-    
+
 
     function handleRock() {
         playerChoice = playerChoices[0];
@@ -418,7 +418,7 @@ let isPlaying = false;
 
 
 
-inputBox.addEventListener('input', function() {
+inputBox.addEventListener('input', function () {
     let revealSound = new Audio("typing.mp3");
     revealSound.play()
     revealSound.volume = 0.2;
@@ -439,12 +439,12 @@ inputBox.addEventListener('input', function() {
 });
 
 if (isPlaying === false) {
-    document.addEventListener('keydown', function(event) {
+    document.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
             const scene1 = document.querySelector('.getUsernameScreen')
             const scene2 = document.querySelector('.cover');
-            const usernameTextBox = document.querySelector('#usernameText'); 
-            
+            const usernameTextBox = document.querySelector('#usernameText');
+
             scene1.classList.add('d-none');
             scene2.classList.remove('d-none');
 
@@ -455,3 +455,53 @@ if (isPlaying === false) {
         }
     })
 }
+
+// User Win Stuff
+
+function checkPlayerScore() {
+    if (playerScore === 3) {
+        const winScreen = document.querySelector('#winScreen');
+        winScreen.classList.remove('d-none');
+        winScreen.classList.add('d-flex');
+        const gameWinSound = new Audio('sfx/game win.mp3');
+        gameWinSound.volume = 0.2;
+        gameWinSound.play();
+
+        //confetti
+        var defaults = { startVelocity: 10, spread: 150, ticks: 20, zIndex: -1 };
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        var myCanvas = document.createElement('canvas');
+        winScreen.appendChild(myCanvas);
+        myCanvas.classList.add('canvas-styling');
+
+        myCanvas.width = winScreen.offsetWidth;
+        myCanvas.height = winScreen.offsetHeight;
+
+        window.addEventListener('resize', function (e) {
+            myCanvas.width = winScreen.offsetWidth;
+            myCanvas.height = winScreen.offsetHeight;
+        })
+        var myConfetti = confetti.create(myCanvas, {
+            resize: true,
+        });
+        var interval = setInterval(function () {
+
+            var particleCount = 50;
+            // since particles fall down, start a bit higher than random
+            myConfetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, shapes: ['square'] });
+            myConfetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2, }, shapes: ['square'] });
+        }, 250);
+
+        clearInterval(scoreCheck);
+    }
+}
+
+let scoreCheck = setInterval(checkPlayerScore, 1000);
+
+
+
+
