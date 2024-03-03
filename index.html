@@ -118,6 +118,17 @@
                                     <button class="btn btn-dark mt-3 col-6 col-md-3" onclick="replayGame()">Play Again</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="lose-screen d-none align-items-center justify-content-center" id="loseScreen">
+                            <div class="lines"></div>
+                            <div class="win-container w-100">
+                                <div class="row justify-content-center text-center arcade-font text-white m-0 p-0 w-100">
+                                    <div class="fs-3">
+                                        Game &nbsp Over <br> You &nbsp Lose!
+                                    </div>
+                                    <button class="btn btn-dark mt-3 col-6 col-md-3" onclick="replayGame()">Play Again</button>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -125,7 +136,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-3 col-md-1 align-items-end d-flex justify-content-center">
-                            <div class="row justify-content-center align-items-center text-center">
+                            <div class="row justify-content-center align-items-center text-center hover">
                                 <div class="reset-button p-0 mb-1" onclick="restartGame()"></div>
                                 <div class="col-12">
                                   <h6 class="arcade-font m-0 p-0">Reset</h6>  
@@ -144,19 +155,29 @@
                         class="col-6 col-md-3 position-relative p-0 d-flex align-items-center justify-content-center rock">
                         <img class="indicator img-fliud" src="Group 1.png">
                         <button class="btn btn-dark position-absolute player-choice-btn arcade-font fs-3"
-                            id="rock">rock</button>
+                            id="rock">
+                            <span>rock</span>
+                            <img class="btn-bg" src="rock-btn-bg.png">
+                        </button>
+                        
                     </div>
                     <div
                         class="col-6 col-md-3 position-relative p-0 d-flex align-items-center justify-content-center paper">
                         <img class="indicator img-fliud" src="Group 1.png">
                         <button class="btn btn-dark position-absolute player-choice-btn arcade-font fs-3"
-                            id="paper">paper</button>
+                            id="paper">
+                            <span>paper</span>
+                            <img class="btn-bg" src="fist pump animations/player frames/paper/1.png">
+                        </button>
                     </div>
                     <div
                         class="col-6 col-md-3 position-relative p-0 d-flex align-items-center justify-content-center scissors">
                         <img class="indicator img-fliud" src="Group 1.png">
                         <button class="btn btn-dark position-absolute player-choice-btn arcade-font fs-3"
-                            id="scissors">scissors</button>
+                            id="scissors">
+                            <span>scissors</span>
+                            <img class="btn-bg" src="fist pump animations/player frames/scissors/1.png">
+                        </button>
                     </div>
                 </div>
             </div>

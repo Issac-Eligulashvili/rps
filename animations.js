@@ -22,8 +22,9 @@ let isPlaying = false;
 const scene1 = document.querySelector('.getUsernameScreen');
 const scene2 = document.querySelector('.cover');
 const winScreen = document.querySelector('#winScreen');
+const loseScreen = document.querySelector('#loseScreen');
 
-
+//alll animations of the fist
 function shake() {
     let fistShakeAnim = setInterval(function () {
         // Fist going up
@@ -288,43 +289,51 @@ function animations() {
 let inputBox = document.querySelector('#userName');
 let usernameArray = [];
 
-inputBox.addEventListener('input', function () {
-    let revealSound = new Audio("typing.mp3");
-    revealSound.play()
-    revealSound.volume = 0.2;
-
-    usernameArray = inputBox.value.split('');
-    if (usernameArray[0] === undefined) {
-        usernameArray[0] = '‎ ';
-    }
-    if (usernameArray[1] === undefined) {
-        usernameArray[1] = '‎ ';
-    }
-    if (usernameArray[2] === undefined) {
-        usernameArray[2] = '‎ ';
-    }
-    document.querySelector('#box1').innerText = usernameArray[0];
-    document.querySelector('#box2').innerText = usernameArray[1];
-    document.querySelector('#box3').innerText = usernameArray[2];
-});
-
-if (isPlaying === false) {
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            const usernameTextBox = document.querySelector('#usernameText');
-
-            scene1.classList.add('d-none');
-            scene2.classList.remove('d-none');
-
-            isPlaying = true;
-            playGame();
-
-            usernameTextBox.innerText = inputBox.value;
-
+function getuserName () {
+    inputBox.addEventListener('input', function () {
+        let revealSound = new Audio("typing.mp3");
+        revealSound.play()
+        revealSound.volume = 0.2;
+    
+        usernameArray = inputBox.value.split('');
+        if (usernameArray[0] === undefined) {
+            usernameArray[0] = '‎ ';
         }
-    })
+        if (usernameArray[1] === undefined) {
+            usernameArray[1] = '‎ ';
+        }
+        if (usernameArray[2] === undefined) {
+            usernameArray[2] = '‎ ';
+        }
+        document.querySelector('#box1').innerText = usernameArray[0];
+        document.querySelector('#box2').innerText = usernameArray[1];
+        document.querySelector('#box3').innerText = usernameArray[2];
+    });
+    
+    if (isPlaying === false) {
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                const usernameTextBox = document.querySelector('#usernameText');
+    
+                scene1.classList.add('d-none');
+                scene2.classList.remove('d-none');
+    
+                isPlaying = true;
+                playGame();
+    
+                usernameTextBox.innerText = inputBox.value;
+    
+            }
+        })
+    }
 }
 
+getuserName();
+
+
+
+
+//playing the actual game!
 
 function getComputerChoice() {
     const numba = Math.floor(Math.random() * 3);
@@ -396,6 +405,7 @@ function determineWinner(playerChoice, computerChoice) {
 }
 
 function updateScore() {
+    //updating the health
     let playerHealth = document.querySelector('#playerHealth .pill:nth-child(' + playerScore + ')');
     let compHealth = document.querySelector('#compHealth .pill-2:nth-last-child(' + compScore + ')');
 
@@ -498,27 +508,84 @@ function checkPlayerScore() {
         }, deltaTime * 56)
         clearInterval(scoreCheck);
     }
+
+    if (compScore === 3) {
+        setTimeout(function () {
+            roundLoseSound.pause();
+            const gameLoseSound = new Audio('sfx/game lose.mp3');
+            gameLoseSound.play()
+            gameLoseSound.volume = 0.15;
+            
+            loseScreen.classList.remove('d-none');
+            loseScreen.classList.add('d-flex');
+        }, deltaTime * 56)
+        clearInterval(scoreCheck);
+    }
 }
 
 let scoreCheck = setInterval(checkPlayerScore, 1000);
 
 function replayGame() {
-    winScreen.classList.remove('d-flex');
+    if (winScreen.classList.contains('d-flex')) {
+     winScreen.classList.remove('d-flex');   
+    }
+    if (loseScreen.classList.contains('d-flex')) {
+        loseScreen.classList.remove('d-flex');   
+    }
+    loseScreen.classList.add('d-none');
     winScreen.classList.add('d-none');
     document.querySelectorAll('.won').forEach(function(element) {
         element.classList.remove('won');
     })   
     scoreCheck = setInterval(checkPlayerScore, 1000);
 
-    
-    
     playerScore = 0;
     compScore = 0;
-    
-
 
     scene2.classList.remove('d-none');
 }
 
+function restartGame() {
+    if (winScreen.classList.contains('d-flex')) {
+        winScreen.classList.remove('d-flex');   
+       }
+       if (loseScreen.classList.contains('d-flex')) {
+           loseScreen.classList.remove('d-flex');   
+       }
+       loseScreen.classList.add('d-none');
+       winScreen.classList.add('d-none');
+    document.querySelectorAll('.won').forEach(function(element) {
+        element.classList.remove('won');
+    })  
+    
+    if (scene1.classList.contains('d-none')) {
+        scene1.classList.remove('d-none');
+    }
+    scene2.classList.add('d-none');
 
+
+
+    scoreCheck = setInterval(checkPlayerScore, 1000);
+
+    playerScore = 0;
+    compScore = 0;
+
+    //resetting username!!
+    inputBox.value = '';
+    usernameArray = inputBox.value.split('');
+        if (usernameArray[0] === undefined) {
+            usernameArray[0] = '‎ ';
+        }
+        if (usernameArray[1] === undefined) {
+            usernameArray[1] = '‎ ';
+        }
+        if (usernameArray[2] === undefined) {
+            usernameArray[2] = '‎ ';
+        }
+        document.querySelector('#box1').innerText = usernameArray[0];
+        document.querySelector('#box2').innerText = usernameArray[1];
+        document.querySelector('#box3').innerText = usernameArray[2];
+
+
+}
 

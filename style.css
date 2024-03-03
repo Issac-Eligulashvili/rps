@@ -100,6 +100,24 @@ button:hover {
 .player-choice-btn {
     width: 80%;
     height: 65%;
+    background-color: white;
+    border: red solid 7px;
+    color: red;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+}
+
+.btn-bg {
+    width: 100%;
+    position: absolute;
+    opacity: 0.2;
+}
+
+span {
+    position: relative;
+    z-index: 2;
 }
 
 .stripe {
@@ -246,6 +264,17 @@ button:hover {
 }
 
 .win-screen {
+    position: absolute;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    background-color: #0c0c0c;
+}
+
+.lose-screen {
     position: absolute;
     z-index: 20;
     left: 0;
