@@ -476,6 +476,9 @@ function checkPlayerScore() {
             const gameWinSound = new Audio('sfx/game win.mp3');
             gameWinSound.volume = 0.2;
             gameWinSound.play();
+            rockBtn.removeEventListener('click', handleRock);
+            paperBtn.removeEventListener('click', handlePaper);
+            scissorsBtn.removeEventListener('click', handleScissors);
 
             //confetti
             var defaults = { startVelocity: 10, spread: 150, ticks: 20, zIndex: -1 };
@@ -518,6 +521,10 @@ function checkPlayerScore() {
             
             loseScreen.classList.remove('d-none');
             loseScreen.classList.add('d-flex');
+            rockBtn.removeEventListener('click', handleRock);
+            paperBtn.removeEventListener('click', handlePaper);
+            scissorsBtn.removeEventListener('click', handleScissors);
+
         }, deltaTime * 56)
         clearInterval(scoreCheck);
     }
@@ -563,7 +570,8 @@ function restartGame() {
     }
     scene2.classList.add('d-none');
 
-
+    playerFist.src = "fist pump animations/player frames/rock/6.png";
+    compFist.src = "fist pump animations/computer frames/rock/6.png";
 
     scoreCheck = setInterval(checkPlayerScore, 1000);
 
